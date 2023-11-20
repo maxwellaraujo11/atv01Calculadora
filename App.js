@@ -30,18 +30,21 @@ export default function App() {
       case '/': 
         setCurrentNumber((fistNumber / lastNumber).toString())
         return
+      case '%':
+      setCurrentNumber((fistNumber * lastNumber / 100).toString())
+      return
     }
   }
 
   function handleInput(buttonPressed){
     console.log(buttonPressed) // Mostra no Console a tecla pressionada
-    if(buttonPressed === '+' | buttonPressed === "-" | buttonPressed === "x" | buttonPressed === "/" ){
+    if(buttonPressed === '+' | buttonPressed === "-" | buttonPressed === "x" | buttonPressed === "/" | buttonPressed === "%" ){
       setCurrentNumber(currentNumber + " " + buttonPressed + " ")
       return
     }
     switch(buttonPressed){
       case 'DEL':
-        setCurrentNumber(currentNumber.substring(0, (currentNumber.length - 2)))
+        setCurrentNumber(currentNumber.substring(0, (currentNumber.length - 1)))
         return
       case 'LIMPAR': // Limpa todo o conteúdo
         setLastNumber("") 
@@ -52,6 +55,7 @@ export default function App() {
         calculator()
         return
       case '+/-':
+        setCurrentNumber((-1 * currentNumber).toString())
         return
     }
 
@@ -115,17 +119,18 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
   },
   button: {
-    backgroundColor: 'DarkSeaGreen',
+    backgroundColor: '#f7f4',
     alignItems: 'center',
     justifyContent: 'center',
     minWidth: 90, 
     minHeight: 90,
     flex: 2,
-    borderRadius: 50,
+    borderRadius: 10,
     margin: 2,
   },
   textButton: {
-    color: "#7c7c7c",
+    color: "#f8f8f8",
     fontSize: 20,
+    fontWeight: 400,
   } 
 });
